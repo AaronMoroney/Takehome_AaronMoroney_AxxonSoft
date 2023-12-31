@@ -20,9 +20,6 @@ const App = () => {
   // useEffect hook replaces componentDidMount for handling side effects.
   useEffect(() => {
     fetchData(getUsers, setUsers, setLoading);
-  }, []);
-
-  useEffect(() => {
     fetchData(getOrganizations, setOrganizations, setLoading);
   }, []);
 
