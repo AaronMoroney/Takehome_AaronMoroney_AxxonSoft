@@ -11,7 +11,6 @@ const UserItem = ({ user, organizations }) => {
             {/* 
             ** these Divs should be changed to meaningful JSX 
             ** e.g <h1>, <p> etc, however this will alter the UI 
-            ** In this task, we aren't permitted to edit the CSS
             ** I decided to keep the UI consistent with Original
             **/}
             <div>Name: {user.name}</div>

@@ -3,6 +3,17 @@
 ## Project Description
 This project contains a simple React application that renders a list of users which can be filtered by organization. The users can be filtered by clicking on the organization name and the filter can be reset by clicking on the “reset” button. The application demonstrates the use of React hooks for state and effect management and includes a mock backend for API interactions.
 
+## Installation Note
+
+Important Notice: 
+Node.js Compatibility Issue
+
+Error Description:
+When running the project with Node.js version 17 I encountered the following error: error:0308010C:digital envelope routines::unsupported. This issue arises due to changes in the way Node.js handles  operations. The new version removes support for certain legacy algorithms and modes, which some dependencies in this project might still rely on.
+
+Temporary Solution:
+To resolve this issue - I modified the npm start script in package.json to include the legacy provider option. This is a temporary solution for the purposes of this interview coding exam. 
+
 ## Installation
 
 To get started with this project, follow the steps below:
@@ -11,11 +22,11 @@ To get started with this project, follow the steps below:
   - git clone <repository-url>
 2. Navigate to the project directory.
   - cd takehometest_aaron
-3.Install the necessary dependencies.
+3. Install the necessary dependencies.
   - npm install
-4. run the application in development mode from your terminal
+4. run the application in development mode from your terminal.
   - npm start
-5. Open the project in your browser
+5. Open the project in your browser.
   - Open http://localhost:3000
 
 ## Usage

@@ -1,5 +1,5 @@
 //react
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 //mock-api 
 import { getUsers, getOrganizations } from "./mock-backend/api";
 //components
@@ -23,13 +23,15 @@ const App = () => {
     fetchData(getOrganizations, setOrganizations, setLoading);
   }, []);
 
-  const handleSelectOrg = (usersOrganizationId) => {
+   // Define the handleSelectOrg function with useCallback
+   //avoids creating a new FN. on every re-render & unneccessary rerenders
+  const handleSelectOrg = useCallback((usersOrganizationId) => {
     // Efficiently finds and sets the selected organization reducing time complexity.
     const currentlySelectedOrg = organizations.find(org => org.id === usersOrganizationId);
     setSelectedOrg(currentlySelectedOrg);
     // Debugging statement to confirm the selected organization (Consider removing for production).
     console.log('Selected organization:', currentlySelectedOrg.name);
-  };  
+  }, [organizations]);
 
   const resetSelectedOrg = () => {
     // Resets the state of the selected organization.
@@ -51,9 +53,12 @@ const App = () => {
       )}
       {displayedUsers.map(user => (
         // Using a key prop for efficient list rendering and wrapping the user item with a clickable div.
-        <div className="user-list" onClick={() => handleSelectOrg(user.organization)}>
+        <div 
+          className="user-list" 
+          key={user.id} 
+          onClick={() => handleSelectOrg(user.organization)}
+        >
           <UserItem  
-            key={user.id} 
             user={user}
             organizations={organizations}
           />
