@@ -1,37 +1,19 @@
 //react
-import React, { useState, useEffect, useCallback } from "react";
-//mock-api 
-import { getUsers, getOrganizations } from "../../../mock-backend/api";
+import React from "react";
+
 //components
+import { useSelectOrg } from "../hooks/useSelectOrg";
 import UserItem from "./UserItem";
-import fetchData from "../helpers/fetchData";
 import ResetOrganization from "./ResetOrganization";
 
 const OrganizationSelector = () => {
-  let [loading, setLoading] = useState(false);
-  let [users, setUsers] = useState([]);
-  let [organizations, setOrganizations] = useState([]);
-  let [selectedOrg, setSelectedOrg] = useState(null);
-  //fetchData coming from helpers
-  useEffect(() => {
-    fetchData(getUsers, setUsers, setLoading);
-    fetchData(getOrganizations, setOrganizations, setLoading);
-  }, []);
+  let { handleSelectOrg, resetSelectedOrg, selectedOrg, organizations, users, loading } = useSelectOrg();
   
-  const handleSelectOrg = useCallback((usersOrganizationId) => {
-    const currentlySelectedOrg = organizations.find(org => org.id === usersOrganizationId);
-    setSelectedOrg(currentlySelectedOrg);
-  }, [organizations]);
-
-  const resetSelectedOrg = () => {
-    setSelectedOrg(null);
-  };
-
-  if (loading) return "Loading...";
-
   const displayedUsers = selectedOrg ? 
   users.filter(user => user.organization === selectedOrg.id)
-  : users;
+  : users || [];
+
+  if (loading) return "Loading...";
 
   return (
     <div>
