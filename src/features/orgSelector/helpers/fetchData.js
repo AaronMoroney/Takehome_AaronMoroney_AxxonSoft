@@ -1,20 +1,14 @@
-/*
-** HELPERS
-**
-** Generic fetch function, can now import & pass parameters into this function
-** This aligns with the DRY principle
-*/
-
-let fetchData = (apiCall, setApplicationState, setLoading) => {
-    setLoading(true);
+const fetchData = (apiCall, setApplicationState,  setLoadingCallback, notLoadingCallback) => {
+    setLoadingCallback();
+    console.log('fetching data');
     if(typeof apiCall === 'function'){
         apiCall()
         .then((response) => {
-            setApplicationState(response);
-            setLoading(false);
+        setApplicationState(response);
+        notLoadingCallback();
         })
         .catch(error => {
-            setLoading(false);
+        notLoadingCallback();
         })
     }
 }
