@@ -10,14 +10,11 @@ let fetchData = (apiCall, setApplicationState, setLoading) => {
     if(typeof apiCall === 'function'){
         apiCall()
         .then((response) => {
-        setApplicationState(response);
-        console.log("Data fetched:", response);
-        setLoading(false);
+            setApplicationState(response);
+            setLoading(false);
         })
         .catch(error => {
-        console.log('failed to fetch', error);
-        //setError(`Oops! we haven't been able to find that, please try again`);
-        setLoading(false);
+            setLoading(false);
         })
     }
 }

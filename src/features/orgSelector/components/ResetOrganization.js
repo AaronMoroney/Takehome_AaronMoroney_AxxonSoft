@@ -1,7 +1,7 @@
 //react
 import React from "react"; 
 
-const OrganizationSelector = ({resetSelectedOrg}) => {
+const ResetOrganization = ({resetSelectedOrg}) => {
 
     return (
         <>
@@ -12,4 +12,4 @@ const OrganizationSelector = ({resetSelectedOrg}) => {
     );
 }
 
-export default OrganizationSelector
+export default ResetOrganization
